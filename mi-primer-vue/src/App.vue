@@ -1,17 +1,34 @@
 <script setup>
-const name = "jorge dominguez";
-const stylecolor = "color: blue";
-const arraycolores = ["purple","orange","yellow"];
-const activo =  true;
+import {ref} from 'vue'
+let counter =ref(0);
+const incremento = () => {
+    counter.value ++;
+};
+const disminucion = () => {
+    counter.value --;
+};
+const resetear = () => {
+    counter.value =(0);
+};
 </script>
 
 <template>
-  <h1 >Hola {{ name }}</h1>
-  <h2>{{ arraycolores }}</h2>
-  <h2 :style="`color: ${arraycolores[2]}`">soy azul</h2>
+    <h2 :class="counter >= 0 ? 'positive' : 'negative'">
+        {{ counter }}
+    </h2>
+    <button @click="incremento">aumentar</button>
+    <button @click="disminucion">disminuir</button>
+    <button @click="resetear">resetear</button>
 </template>
+
 <style>
 h1{
+  color: red;
+}
+.positive{
+  color: green;
+}
+.negative{
   color: red;
 }
 </style>
